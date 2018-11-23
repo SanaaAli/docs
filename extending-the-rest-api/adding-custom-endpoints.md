@@ -30,6 +30,17 @@ function my_awesome_func( $data ) {
   return $posts[0]->post_title;
 }
 ```
+function my_awesome_funct( $data ) {
+  $posts = get_posts( array(
+    'categories' => $data['id'],
+  ) );
+
+  if ( empty( $posts ) ) {
+    return null;
+  }
+
+  return $posts[0]->post_title;
+}
 
 To make this available via the API, we need to register a route. This tells the API to respond to a given request with our function. We do this through a function called `register_rest_route`, which should be called in a callback on `rest_api_init` to avoid doing extra work when the API isn't loaded.
 
